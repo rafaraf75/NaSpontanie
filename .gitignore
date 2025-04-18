@@ -1,0 +1,64 @@
+# Build output
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Visual Studio & Rider
+.vscode/
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mac, Linux, Windows system files
+.DS_Store
+Thumbs.db
+
+# MAUI build artifacts
+*.apk
+*.aab
+*.app
+*.xcarchive
+*.xcuserstate
+
+# User-specific preferences
+*.userprefs
+*.cache
+*.db
+*.bak
+
+# Logs
+*.log
+
+# Secrets and API keys
+*.secret.json
+secrets.json
+**/secrets.xml
+
+# dotnet secrets in Windows user profile
+%APPDATA%\Microsoft\UserSecrets\
+*.pfx
+
+# Temporary files
+*.tmp
+*.swp
+*.~*
+
+# Node/npm leftovers (if used)
+node_modules/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Others
+wwwroot/lib/
+.env
+.env.*

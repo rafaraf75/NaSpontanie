@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="NaSpontanie.MAUI.HomePage"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E8F0FE">
+
+    <Grid RowDefinitions="*, Auto" Padding="30,40,30,20">
+
+        <!-- Główna część strony -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="40" VerticalOptions="Start">
+
+                <!-- Nagłówek -->
+                <Label x:Name="WelcomeLabel"
+                       Text="Witaj "
+                       FontSize="32"
+                       HorizontalOptions="Center"
+                       TextColor="#2E2E2E" />
+
+                <Label Text="Wybierz aktywność."
+                       FontSize="18"
+                       HorizontalOptions="Center"
+                       TextColor="#2E2E2E" />
+
+                <!-- Kafelki -->
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
+                      ColumnSpacing="20" RowSpacing="20">
+
+                    <!-- Mapa -->
+                    <Frame BackgroundColor="#2b0098"
+                           CornerRadius="10"
+                           Padding="20"
+                           HasShadow="False"
+                           Grid.Column="0" Grid.Row="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMapClicked" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                            <Label Text="&#xf279;" FontFamily="FontAwesome"
+                                   FontSize="24" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Text="Mapa" FontSize="16"
+                                   TextColor="White" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Lista -->
+                    <Frame BackgroundColor="#2b0098"
+                           CornerRadius="10"
+                           Padding="20"
+                           HasShadow="False"
+                           Grid.Column="1" Grid.Row="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEventsClicked" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                            <Label Text="&#xf03a;" FontFamily="FontAwesome"
+                                   FontSize="24" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Text="Lista" FontSize="16"
+                                   TextColor="White" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Dodaj -->
+                    <Frame BackgroundColor="#2b0098"
+                           CornerRadius="10"
+                           Padding="20"
+                           HasShadow="False"
+                           Grid.Column="0" Grid.Row="1">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAddClicked" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                            <Label Text="&#xf067;" FontFamily="FontAwesome"
+                                   FontSize="24" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Text="Dodaj" FontSize="16"
+                                   TextColor="White" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Profil -->
+                    <Frame BackgroundColor="#2b0098"
+                           CornerRadius="10"
+                           Padding="20"
+                           HasShadow="False"
+                           Grid.Column="1" Grid.Row="1">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProfileClicked" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                            <Label Text="&#xf007;" FontFamily="FontAwesome"
+                                   FontSize="24" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Text="Profil" FontSize="16"
+                                   TextColor="White" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Przycisk wylogowania -->
+        <Button 
+            Grid.Row="1"
+            Text="Wyloguj"
+            BackgroundColor="#B82525"
+            TextColor="White"
+            FontSize="14"
+            CornerRadius="10"
+            Padding="10"
+            Margin="0,20,0,10"
+            HorizontalOptions="Center"
+            Clicked="OnLogoutClicked" />
+
+    </Grid>
+</ContentPage>

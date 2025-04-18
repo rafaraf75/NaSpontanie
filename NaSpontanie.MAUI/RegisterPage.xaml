@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NaSpontanie.MAUI.RegisterPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#E8F0FE">
+    <ScrollView>
+        <VerticalStackLayout Padding="30,40,30,20" Spacing="50" VerticalOptions="Start">
+
+            <!-- Nagłówek -->
+            <Label Text="Załóż konto"
+             FontSize="32"
+             HorizontalOptions="Center"
+             TextColor="#2E2E2E" />
+
+            <!-- Ramka z formularzem rejestracji -->
+            <Frame BackgroundColor="White"
+             CornerRadius="10"
+             Padding="20"
+             HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+                    <Entry x:Name="UsernameEntry"
+                 Placeholder="Nazwa użytkownika"
+                 TextColor="#2E2E2E"
+                 PlaceholderColor="#A9A9A9"
+                 BackgroundColor="Transparent" />
+                    <Entry x:Name="EmailEntry"
+                 Placeholder="Email"
+                 Keyboard="Email"
+                 TextColor="#2E2E2E"
+                 PlaceholderColor="#A9A9A9"
+                 BackgroundColor="Transparent" />
+                    <Entry x:Name="PasswordEntry"
+                 Placeholder="Hasło"
+                 IsPassword="True"
+                 TextColor="#2E2E2E"
+                 PlaceholderColor="#A9A9A9"
+                 BackgroundColor="Transparent" />
+                    <Entry x:Name="ConfirmPasswordEntry"
+                 Placeholder="Powtórz hasło"
+                 IsPassword="True"
+                 TextColor="#2E2E2E"
+                 PlaceholderColor="#A9A9A9"
+                 BackgroundColor="Transparent" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Przycisk rejestracji -->
+            <Button Text="Zarejestruj się"
+              Clicked="OnRegisterClicked"
+              BackgroundColor="#2b0098"
+              TextColor="White"
+              CornerRadius="10"
+              HeightRequest="50" />
+
+            <!-- Sekcja powrotu do logowania -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Label Text="Masz już konto?"
+               TextColor="#2E2E2E"
+               VerticalOptions="Center" />
+                <Button Text="Wróć do logowania"
+                Clicked="OnBackClicked"
+                BackgroundColor="Transparent"
+                TextColor="#2b0098"
+                FontAttributes="Bold"
+                Padding="0" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

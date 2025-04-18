@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="NaSpontanie.MAUI.ProfilePage"
+    Title="Twój profil"
+    BackgroundColor="#E8F0FE">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,40,30,20"
+                             Spacing="30"
+                             VerticalOptions="StartAndExpand">
+
+            <Frame BackgroundColor="White"
+                   CornerRadius="10"
+                   Padding="20"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+
+                    <Entry x:Name="UsernameEntry"
+                           Placeholder="Nazwa użytkownika"
+                           TextColor="#2E2E2E"
+                           PlaceholderColor="#A9A9A9"
+                           BackgroundColor="Transparent" />
+
+                    <Entry x:Name="EmailEntry"
+                           Placeholder="Email"
+                           Keyboard="Email"
+                           TextColor="#2E2E2E"
+                           PlaceholderColor="#A9A9A9"
+                           BackgroundColor="Transparent" />
+
+                    <Editor x:Name="BioEditor"
+                            Placeholder="Bio"
+                            AutoSize="TextChanges"
+                            HeightRequest="80"
+                            TextColor="#2E2E2E"
+                            PlaceholderColor="#A9A9A9"
+                            BackgroundColor="Transparent" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Zapisz zmiany"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#2b0098"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+
+            <!-- Ramka z formularzem zmiany hasła -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="10"
+                   Padding="20"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+
+                    <Entry x:Name="OldPasswordEntry"
+                           Placeholder="Stare hasło"
+                           IsPassword="True"
+                           TextColor="#2E2E2E"
+                           PlaceholderColor="#A9A9A9"
+                           BackgroundColor="Transparent" />
+
+                    <Entry x:Name="NewPasswordEntry"
+                           Placeholder="Nowe hasło"
+                           IsPassword="True"
+                           TextColor="#2E2E2E"
+                           PlaceholderColor="#A9A9A9"
+                           BackgroundColor="Transparent" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Przycisk zmiany hasła -->
+            <Button Text="Zmień hasło"
+                    Clicked="OnChangePasswordClicked"
+                    BackgroundColor="#2b0098"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+
+            <!-- Lista znajomych -->
+            <Label Text="Moi znajomi"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,30,0,10"
+                   TextColor="#2E2E2E" />
+
+            <CollectionView x:Name="FriendsList"
+                            ItemsLayout="VerticalList"
+                            SelectionMode="None"
+                            Margin="0,0,0,20">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White"
+                               CornerRadius="10"
+                               Padding="10"
+                               Margin="0,5">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Username}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Email}" FontSize="12" TextColor="Gray"/>
+                                </VerticalStackLayout>
+
+                                <!-- Ikona usuwania znajomego -->
+                                <Label Text="&#xf1f8;"
+                                       FontFamily="FontAwesome"
+                                       FontSize="18"
+                                       TextColor="Red"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnDeleteFriendTapped"
+                                            CommandParameter="{Binding Id}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

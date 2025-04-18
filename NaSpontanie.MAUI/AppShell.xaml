@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="NaSpontanie.MAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:NaSpontanie.MAUI"
+    Shell.FlyoutBehavior="Disabled"
+    Title="NaSpontanie.MAUI">
+
+    <ShellContent
+        Route="LoginPage"
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginPage}"/>
+
+    <ShellContent
+        Route="HomePage"
+        Title="Start"
+        ContentTemplate="{DataTemplate local:HomePage}"/>
+
+    <ShellContent
+        Route="EventListPage"
+        Title="Lista"
+        ContentTemplate="{DataTemplate local:EventListPage}"/>
+
+</Shell>

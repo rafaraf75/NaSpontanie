@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NaSpontanie.MAUI.AddEventPage"
+             Title="Dodaj wydarzenie">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,40,30,20"
+                             Spacing="30"
+                             VerticalOptions="Start">
+
+            <!-- Formularz dodawania -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="10"
+                   Padding="20"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+                    <Entry x:Name="TitleEntry" Placeholder="Tytuł wydarzenia" />
+                    <Editor x:Name="DescriptionEditor" Placeholder="Opis wydarzenia" AutoSize="TextChanges" />
+                    <DatePicker x:Name="EventDatePicker" />
+
+                    <!-- Picker kategorii -->
+                    <Label Text="Kategoria wydarzenia" FontAttributes="Bold" />
+                    <Picker x:Name="InterestPicker"
+                            Title="Wybierz kategorię"
+                            ItemDisplayBinding="{Binding Name}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Dodaj wydarzenie"
+                    Clicked="OnAddEventClicked"
+                    BackgroundColor="#2b0098"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+
+            <!-- Lista wydarzeń -->
+            <Label Text="Twoje wydarzenia" FontSize="18" FontAttributes="Bold" Margin="0,20,0,10"/>
+            <CollectionView x:Name="MyEventsList" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="*,Auto">
+                            <Label Text="{Binding Title}" FontSize="16" VerticalOptions="Center" />
+                            <Label Text="&#xf1f8;"
+                                   FontFamily="FontAwesome"
+                                   TextColor="Red"
+                                   FontSize="18"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDeleteTapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

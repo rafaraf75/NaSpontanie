@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="NaSpontanie.MAUI.MainTabsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:NaSpontanie.MAUI"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent
+            Title="Mapa"
+            Icon="map.png"
+            ContentTemplate="{DataTemplate local:MapPage}"
+            Route="MapPage" />
+
+        <ShellContent
+            Title="Wydarzenia"
+            Icon="list.png"
+            ContentTemplate="{DataTemplate local:EventListPage}"
+            Route="EventListPage" />
+
+        <ShellContent
+            Title="Dodaj"
+            Icon="plus.png"
+            ContentTemplate="{DataTemplate local:AddEventPage}"
+            Route="AddEventPage" />
+
+        <ShellContent
+            Title="Profil"
+            Icon="user.png"
+            ContentTemplate="{DataTemplate local:ProfilePage}"
+            Route="ProfilePage" />
+    </TabBar>
+</Shell>
+

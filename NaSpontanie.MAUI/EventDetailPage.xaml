@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NaSpontanie.MAUI.EventDetailPage"
+             Title=""
+             BackgroundColor="#E8F0FE"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Wróć -->
+            <Button Text="↩ Wróć"
+                    Clicked="OnBackClicked"
+                    BackgroundColor="#2b0098"
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                    CornerRadius="12"
+                    WidthRequest="100" />
+
+            <!-- Szczegóły wydarzenia -->
+            <Frame BackgroundColor="White" CornerRadius="20" Padding="20" HasShadow="True">
+                <VerticalStackLayout Spacing="12">
+
+                    <!-- Tytuł + JoinRequest -->
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label x:Name="TitleLabel"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="#2E2E2E"
+                               VerticalOptions="Center" />
+
+                        <!-- Ikona JoinRequest -->
+                        <Label x:Name="JoinRequestIcon"
+                               Grid.Column="1"
+                               Text="&#xf055;"
+                               FontFamily="FontAwesome"
+                               FontSize="30"
+                               TextColor="#2b0098"
+                               Margin="10,0,0,0"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnJoinToggleClicked" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                    <Label x:Name="DescriptionLabel" FontSize="16" TextColor="#555" />
+
+                    <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                        <Label Text="&#xf073;" FontFamily="FontAwesome" TextColor="Gray" FontSize="14" />
+                        <Label x:Name="DateLabel" FontSize="14" TextColor="#555"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                        <Label Text="&#xf02d;" FontFamily="FontAwesome" TextColor="Gray" FontSize="14" />
+                        <Label x:Name="CategoryLabel" FontSize="14" TextColor="#555"/>
+                    </HorizontalStackLayout>
+
+                    <Grid ColumnDefinitions="*, Auto">
+                        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                            <Label Text="&#xf007;" FontFamily="FontAwesome" TextColor="Gray" FontSize="14" />
+                            <Label x:Name="CreatorLabel" FontSize="14" TextColor="#555"/>
+                        </HorizontalStackLayout>
+
+                        <!-- Ikonka dodaj do znajomych -->
+                        <Label x:Name="AddFriendIcon"
+                               Grid.Column="1"
+                               Text="&#xf234;" 
+                               FontFamily="FontAwesome"
+                               FontSize="18"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End"
+                               Margin="10,0,0,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAddFriendClicked"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                    <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                        <Label Text="&#xf3c5;" FontFamily="FontAwesome" TextColor="Red" FontSize="14" />
+                        <Label x:Name="DistanceLabel" FontSize="14" TextColor="Red"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Komentarze -->
+            <Label Text="Komentarze" FontSize="20" FontAttributes="Bold" />
+            <CollectionView x:Name="CommentsList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#FFFFFF" CornerRadius="12" Padding="10" Margin="0,5">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <!-- Komentarz -->
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding User.Username}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Text}" FontSize="14" />
+                                </VerticalStackLayout>
+
+                                <!-- Ikona zgłoszenia -->
+                                <Label Grid.Column="1"
+                                       Text="&#xf05e;"
+                                       FontFamily="FontAwesome"
+                                       FontSize="18"
+                                       TextColor="OrangeRed"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End"
+                                       Margin="10,0,10,0"
+                                       IsVisible="{Binding CanReport}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnReportCommentTapped"
+                                            CommandParameter="{Binding Id}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <!-- Ikona kosza FontAwesome -->
+                                <Label Grid.Column="2"
+                                       Text="&#xf1f8;"
+                                       FontFamily="FontAwesome"
+                                       FontSize="18"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End"
+                                       Margin="10,0,10,0"
+                                       TextColor="Red"
+                                       IsVisible="{Binding CanDelete}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnDeleteCommentTapped"
+                                            CommandParameter="{Binding Id}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Dodaj komentarz -->
+            <Entry x:Name="CommentEntry" Placeholder="Dodaj komentarz..." />
+            <Button x:Name="SendButton"
+                    Text="Wyślij komentarz"
+                    BackgroundColor="#2b0098"
+                    TextColor="White"
+                    CornerRadius="10" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
