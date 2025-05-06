@@ -129,15 +129,21 @@ public partial class LoginPage : ContentPage
 
             await DisplayAlert("Sukces", "Zalogowano!", "OK");
 
-            // Przełączenie do zakładki Start
-            var startTab = Shell.Current.Items.FirstOrDefault(i => i.Title == "Start");
-            if (startTab != null)
+            if (Shell.Current?.Items != null)
             {
-                Shell.Current.CurrentItem = startTab;
+                var startTab = Shell.Current.Items.FirstOrDefault(i => i.Title == "Start");
+                if (startTab != null)
+                {
+                    Shell.Current.CurrentItem = startTab;
+                }
+                else
+                {
+                    await DisplayAlert("Błąd", "Nie można przełączyć na zakładkę Start.", "OK");
+                }
             }
             else
             {
-                await DisplayAlert("Błąd", "Nie można przełączyć na zakładkę Start.", "OK");
+                Debug.WriteLine("Shell.Current lub Items są null – UI jeszcze się nie zainicjalizowało?");
             }
         }
         catch (Exception ex)
